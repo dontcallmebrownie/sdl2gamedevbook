@@ -51,22 +51,21 @@ TODO: #4 create a screen renderer         []
 #include "./include/timer.h"
 
 
-
-
 // Globals --Don't love this but here for now
 SDL_Window *win = 0;
 SDL_Renderer *render = 0; // Note: Why are we setting this to 0? Error checking? NULL works for that too
                           // --Keep an eye on this--
 
+bool running = false;
 
 
-
-int init() {
+bool init(const char* title, int height, int width, int flags) {
   std::cout << "init() Called!\n";
 
-  if (SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
+  // initialize SDL
+  if(SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
 
-    win = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
+    win = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, height, width, flags);
 
     std::cout << "\nChecking systems we care about...\n";
 
@@ -85,22 +84,21 @@ int init() {
       std::cout << "\tTimer initialized! \n\n";
     }
 
+    if(win != 0) {
 
+    render = SDL_CreateRenderer(win, -1, 0);
+    // **Add error checking here**
 
-
-
-
-    if (win != 0) {
-      
-      render = SDL_CreateRenderer(win, -1, 0);
-      // **Add error checking here!**
     }
-  } 
+  }
   else {
+
     std::cout << "ERROR: " << SDL_GetError() << std::endl;
+
+  return false;
   }
 
-return 0;
+return true;
 }
 
 int load() {
@@ -128,30 +126,36 @@ int close() {
 return 0;
 }
 
-int main(int argc, char *args[]) {
+void BGRender(int r, int g, int b, int a) {
 
-  init();
-  load();
-  
-  // Everything logic goes between here and close();
-
-
-  // simple render test
-  SDL_SetRenderDrawColor(render, 0, 255, 0, 255);
+  SDL_SetRenderDrawColor(render, r, g, b, a);
   SDL_RenderClear(render);
   SDL_RenderPresent(render);
-  SDL_Delay(2000);
+}
 
-  // SMTPE Texture render test
+int main(int argc, char *args[]) {
 
+  if (init("Sophia", 800, 600, SDL_WINDOW_SHOWN)) {
 
+    running = true;
+  }
+  else {
 
+    return 1;
+  }
+  
+  load();
+  
+  while (running) {
 
-  
-  
-  
-  
-  
+    // eventsHandler();
+    // update();
+    // render();
+
+    BGRender(0, 255, 0, 0);
+    SDL_Delay(2000);
+  }
+
   close();
 
 return 0;
