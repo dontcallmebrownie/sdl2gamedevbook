@@ -1,19 +1,7 @@
 
-#include <iostream>
-#include <fstream>
-#include <string>
-
-#include "SDL2/SDL.h"
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL_ttf.h>
-
 #include "../include/game.h"
 
-
-
-
-bool Game::init(const char* title, int height, int width, int flags) {
+bool Game::init(const char* title, int height, int width, bool fs) {
   std::cout << "init() Called!\n";
 
 
@@ -22,7 +10,7 @@ bool Game::init(const char* title, int height, int width, int flags) {
 
     std::cout << "SDL init success!\n";
 
-    win = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, height, width, flags);
+    win = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, height, width, fs);
     if(win != 0) {
 
       std::cout << "\tWindow created!\n"; 
@@ -32,7 +20,7 @@ bool Game::init(const char* title, int height, int width, int flags) {
 
         std::cout << "\tRenderer created!\n\n";
 
-        SDL_SetRenderDrawColor(screen, 255, 255, 255, 255);
+        SDL_SetRenderDrawColor(screen, 0, 255, 0, 255);
       } 
       else {
 
@@ -72,21 +60,27 @@ bool Game::init(const char* title, int height, int width, int flags) {
       std::cout << "\tTimer initialized! \n\n";
     }
 
+  if(!theTexMan::Instance()->load("../assets/animate-alpha.png", "animate", screen)) {
+
+  return false;
+  }
+
 return true;
 }
 
 void Game::render() {
   
   SDL_RenderClear(screen);
+
+  theTexMan::Instance()->draw("animate", 0, 0, 128, 82, screen);
+  theTexMan::Instance()->drawFrame("animate", 100, 100, 128, 82, 1, curFrame, screen);
+
   SDL_RenderPresent(screen); // draw to the screen
 }
 
-void Game::load() {
-  std::cout << "load() Called!\n";
-}
-
 void Game::update() {
-;
+  
+  curFrame = int(((SDL_GetTicks() / 100) % 6));
 }
 
 void Game::eventsHandler() {
@@ -107,7 +101,7 @@ void Game::eventsHandler() {
 }
 
 void Game::clean() {
-  std::cout << "close() Called!\n";
+  std::cout << "clean() Called!\n";
 
   // Free everything like the good programmer we aren't
   SDL_DestroyWindow(win);

@@ -32,15 +32,13 @@ int main(int argc, char *args[]) {
 
   game = new Game();
 
-  game->init("Sophia", 1000, 500, SDL_WINDOW_SHOWN);
+  game->init("Sophia", 640, 480, false);
   
   while (game->getRunning()) {
 
     game->eventsHandler();
     game->update();
     game->render();
-
-    //BGRender(0, 255, 0, 0);
   }
 
   game->clean();
