@@ -65,6 +65,9 @@ bool Game::init(const char* title, int height, int width, bool fs) {
   return false;
   }
 
+  go.load(100, 100, 128, 82, "animate");
+  p.load(300, 300, 128, 82, "animate");
+
 return true;
 }
 
@@ -72,15 +75,16 @@ void Game::render() {
   
   SDL_RenderClear(screen);
 
-  theTexMan::Instance()->draw("animate", 0, 0, 128, 82, screen);
-  theTexMan::Instance()->drawFrame("animate", 100, 100, 128, 82, 1, curFrame, screen);
+  go.draw(screen);
+  p.draw(screen);
 
   SDL_RenderPresent(screen); // draw to the screen
 }
 
 void Game::update() {
-  
-  curFrame = int(((SDL_GetTicks() / 100) % 6));
+
+  go.update();
+  p.update();
 }
 
 void Game::eventsHandler() {
@@ -94,6 +98,7 @@ void Game::eventsHandler() {
     case SDL_QUIT:
       running = false;
       break;
+
     default:
       break;
     }

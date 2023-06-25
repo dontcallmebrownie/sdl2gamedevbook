@@ -5,6 +5,7 @@
 #include <iostream>
 //#include <fstream>
 #include <string>
+#include <vector>
 
 #include "SDL2/SDL.h"
 #include <SDL2/SDL_image.h>
@@ -12,13 +13,15 @@
 #include <SDL2/SDL_ttf.h>
 
 #include "./texman.h"
+#include "./gameobject.h"
+#include "./player.h"
 
 class Game {
 
 public:
   
-  //Game();
-  //~Game();
+  Game() {}
+  ~Game() {}
   
   bool init(const char* t, int h, int w, bool f);
   void render();
@@ -28,7 +31,10 @@ public:
 
   bool getRunning() {return running;}
 
-  int curFrame;
+  std::vector<gameObject*> memGameObjects; 
+
+  gameObject go;
+  player p;
 
 private:
 
