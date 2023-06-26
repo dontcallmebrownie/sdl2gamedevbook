@@ -15,6 +15,7 @@
 #include "./texman.h"
 #include "./gameobject.h"
 #include "./player.h"
+#include "./enemy.h"
 
 class Game {
 
@@ -31,10 +32,11 @@ public:
 
   bool getRunning() {return running;}
 
-  std::vector<gameObject*> memGameObjects; 
+  gameObject *go;
+  gameObject *p;
+  gameObject *e;
 
-  gameObject go;
-  player p;
+  std::vector<gameObject*> memGameObjects; 
 
 private:
 

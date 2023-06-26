@@ -15,3 +15,8 @@ void player::update(){
   gameObject::memCurFrame = int(((SDL_GetTicks() / 100) % 6)); // This was not explicitly stated in the book, but it works?
   memX -= 1;
 }
+
+void player::clean() {
+ 
+  ;
+}

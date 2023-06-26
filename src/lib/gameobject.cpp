@@ -22,3 +22,8 @@ void gameObject::update() {
 
   memX += 1;
 }
+
+void gameObject::clean() {
+ 
+  ;
+}

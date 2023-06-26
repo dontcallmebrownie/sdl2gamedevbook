@@ -16,6 +16,11 @@ class gameObject {
 
 public:
 
+  gameObject() {;};
+
+  virtual
+  ~gameObject() {};
+
   virtual void load(int x, int y, int w, int h, std::string id);
   virtual void draw(SDL_Renderer *screen); // {std::cout << "gameObject.draw() Called!\n";}
   virtual void update(); // {std::cout << "gameObject.update() Called!\n";}
