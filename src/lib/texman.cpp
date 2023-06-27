@@ -1,6 +1,6 @@
 #include "../include/texman.h"
 
-texMan *texMan::inst;
+texMan *texMan::inst = 0;
 
 bool texMan::load(std::string fileName, std::string id, SDL_Renderer *screen) {
   std::cout << "texMan.load() called!\n";

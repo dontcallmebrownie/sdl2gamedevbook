@@ -3,26 +3,29 @@
 
 
 #include <iostream>
-//#include <fstream>
 #include <string>
 #include <vector>
-
-#include "SDL2/SDL.h"
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL_ttf.h>
 
 #include "./texman.h"
 #include "./gameobject.h"
 #include "./player.h"
 #include "./enemy.h"
 
-class Game {
+class game {
 
 public:
   
-  Game() {}
-  ~Game() {}
+  static game *Instance() {
+
+    if(inst == 0) {
+
+      inst = new game();
+    return inst;
+    }
+  return inst;
+  }
+
+  ~game() {}
   
   bool init(const char* t, int h, int w, bool f);
   void render();
@@ -31,6 +34,7 @@ public:
   void clean();
 
   bool getRunning() {return running;}
+  SDL_Renderer *getRenderer() const {return screen;}
 
   gameObject *go;
   gameObject *p;
@@ -40,11 +44,16 @@ public:
 
 private:
 
+  game() {}
+
+  static game *inst;
+
   SDL_Window *win;
   SDL_Renderer *screen;
 
   bool running;
 };
 
+  typedef game theGame;
 
 #endif // GAME_H

@@ -1,19 +1,18 @@
 #include "../include/player.h"
 
-void player::load(int x, int y, int w, int h, std::string id) {
+player::player(const loadParams *lP) : SDLGameObject(lP) {
 
-  gameObject::load(x, y, w, h, id);
 }
 
-void player::draw (SDL_Renderer *screen) {
+void player::draw () {
 
-  gameObject::draw(screen);
+  SDLGameObject::draw();
 }
 
 void player::update(){
 
-  gameObject::memCurFrame = int(((SDL_GetTicks() / 100) % 6)); // This was not explicitly stated in the book, but it works?
   memX -= 1;
+  memCurFrame = int(((SDL_GetTicks() / 100) % 6));
 }
 
 void player::clean() {

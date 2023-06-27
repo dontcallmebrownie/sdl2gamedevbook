@@ -1,18 +1,16 @@
 #include "../include/enemy.h"
 
-void enemy::load(int x, int y, int w, int h, std::string id) {
+enemy::enemy(const loadParams *lP) : SDLGameObject(lP) {
 
-  gameObject::load(x, y, w, h, id);
 }
 
-void enemy::draw (SDL_Renderer *screen) {
+void enemy::draw () {
 
-  gameObject::draw(screen);
+  SDLGameObject::draw();
 }
 
 void enemy::update() {
 
-  memY += 1;
   memX += 1;
   memCurFrame = int(((SDL_GetTicks() / 100) % 6 ));
 }

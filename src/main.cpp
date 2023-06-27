@@ -20,25 +20,34 @@
 *
 *************************************************************/
 
-#include "include/game.h"
-
-Game *game = 0;
+#include "./include/game.h"
 
 int main(int argc, char *args[]) {
 
-  game = new Game();
+  std::cout << "Attempting to init Game...\n";
 
-  game->init("Sophia", 640, 480, false);
-  
-  while (game->getRunning()) {
+  if(theGame::Instance()->init("Sophia", 640, 480, false)) {
 
-    game->eventsHandler();
-    game->update();
-    game->render();
-    SDL_Delay(10);
+    std::cout << "\tGame init success!\n";
+
+    while(theGame::Instance()->getRunning()) {
+
+      theGame::Instance()->eventsHandler();
+      theGame::Instance()->update();
+      theGame::Instance()->render();
+
+      SDL_Delay(10);      
+    }
+  }
+  else {
+
+    std::cout << "**Game init failed!**\n";
+  return -1;
   }
 
-  game->clean();
+  std::cout << "Game closing!\n";
+
+  theGame::Instance()->clean();
 
 return 0;
 }

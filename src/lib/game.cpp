@@ -1,7 +1,8 @@
-
 #include "../include/game.h"
 
-bool Game::init(const char* title, int height, int width, bool fs) {
+game *game::inst = 0;
+
+bool game::init(const char* title, int height, int width, bool fs) {
   std::cout << "init() Called!\n";
 
 
@@ -65,34 +66,27 @@ bool Game::init(const char* title, int height, int width, bool fs) {
   return false;
   }
 
-  go = new gameObject();
-  p = new player();
-  e = new enemy();
+  memGameObjects.push_back(new player(new loadParams(100, 100, 128, 82, "animate")));
+  memGameObjects.push_back(new enemy(new loadParams(300, 300, 128, 82, "animate")));
+  
 
-  go->load(100, 100, 126, 82, "animate");
-  p->load(300, 300, 128, 82, "animate");
-  e->load(0, 0, 128, 82, "animate");
-
-  memGameObjects.push_back(go);
-  memGameObjects.push_back(p);
-  memGameObjects.push_back(e);
-
+ 
 return true;
 }
 
-void Game::render() {
+void game::render() {
   
   SDL_RenderClear(screen);
 
   for(std::vector<gameObject>::size_type i = 0; i != memGameObjects.size(); i++) {
 
-    memGameObjects[i]->draw(screen);
+    memGameObjects[i]->draw();
   }
 
   SDL_RenderPresent(screen);
 }
 
-void Game::update() {
+void game::update() {
 
   for(std::vector<gameObject>::size_type i = 0; i != memGameObjects.size(); i++) {
 
@@ -100,7 +94,7 @@ void Game::update() {
   }
 }
 
-void Game::eventsHandler() {
+void game::eventsHandler() {
   
   SDL_Event event;
   
@@ -118,7 +112,7 @@ void Game::eventsHandler() {
   }
 }
 
-void Game::clean() {
+void game::clean() {
   std::cout << "clean() Called!\n";
 
   // Free everything like the good programmer we aren't
