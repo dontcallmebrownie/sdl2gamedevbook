@@ -10,6 +10,7 @@
 #include "./gameobject.h"
 #include "./player.h"
 #include "./enemy.h"
+#include "inputhandler.h"
 
 class game {
 
@@ -34,6 +35,7 @@ public:
   void clean();
 
   bool getRunning() {return running;}
+  void quit() { running = false;}
   SDL_Renderer *getRenderer() const {return screen;}
 
   gameObject *go;

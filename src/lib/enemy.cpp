@@ -11,8 +11,10 @@ void enemy::draw () {
 
 void enemy::update() {
 
-  memX += 1;
-  memCurFrame = int(((SDL_GetTicks() / 100) % 6 ));
+  memPos.setX(memPos.getX() + 1);
+  memPos.setY(memPos.getY() + 1);
+
+  //memCurFrame = int(((SDL_GetTicks() / 100) % 6 ));
 }
 
 void enemy::clean() {

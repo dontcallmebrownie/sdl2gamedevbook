@@ -22,21 +22,33 @@
 
 #include "./include/game.h"
 
+const int FPS = 60;
+const int DELAY_TIME = 16.6f;
+
 int main(int argc, char *args[]) {
+
+  Uint32 frameS, frameT;
 
   std::cout << "Attempting to init Game...\n";
 
   if(theGame::Instance()->init("Sophia", 640, 480, false)) {
 
-    std::cout << "\tGame init success!\n";
+    std::cout << "\tGame init success!\n\n";
 
     while(theGame::Instance()->getRunning()) {
+
+      frameS = SDL_GetTicks();
 
       theGame::Instance()->eventsHandler();
       theGame::Instance()->update();
       theGame::Instance()->render();
 
-      SDL_Delay(10);      
+      frameT = SDL_GetTicks() - frameS;
+
+      if (frameT < DELAY_TIME) {
+
+        SDL_Delay((int)(DELAY_TIME - frameT));
+      }
     }
   }
   else {

@@ -1,6 +1,7 @@
 #include "../include/game.h"
 
 game *game::inst = 0;
+inputHandler *inputHandler::inst = 0;
 
 bool game::init(const char* title, int height, int width, bool fs) {
   std::cout << "init() Called!\n";
@@ -41,7 +42,8 @@ bool game::init(const char* title, int height, int width, bool fs) {
   return false;
   }
 
-  std::cout << "SDL init success!\n";
+  theInputHandler::Instance()->initializeJoySticks();
+  
   running = true;
 
   std::cout << "\nChecking systems we care about...\n";
@@ -50,7 +52,7 @@ bool game::init(const char* title, int height, int width, bool fs) {
 
       std::cout << "\tVideo initialized! \n";
     }
-    
+
     if(SDL_WasInit(SDL_INIT_AUDIO) != 0) {
 
       std::cout << "\tAudio initialized! \n";
@@ -60,6 +62,8 @@ bool game::init(const char* title, int height, int width, bool fs) {
 
       std::cout << "\tTimer initialized! \n\n";
     }
+
+
 
   if(!theTexMan::Instance()->load("../assets/animate-alpha.png", "animate", screen)) {
 
@@ -96,20 +100,7 @@ void game::update() {
 
 void game::eventsHandler() {
   
-  SDL_Event event;
-  
-  if(SDL_PollEvent(&event)) {
-  
-    switch (event.type) {
-      
-    case SDL_QUIT:
-      running = false;
-      break;
-
-    default:
-      break;
-    }
-  }
+  theInputHandler::Instance()->update();
 }
 
 void game::clean() {
@@ -118,6 +109,8 @@ void game::clean() {
   // Free everything like the good programmer we aren't
   SDL_DestroyWindow(win);
   SDL_DestroyRenderer(screen);
+
+  theInputHandler::Instance()->clean();
  
   // Quit all extensions
   TTF_Quit();

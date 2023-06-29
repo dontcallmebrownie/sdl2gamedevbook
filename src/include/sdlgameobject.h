@@ -3,6 +3,7 @@
 
 
 #include "gameobject.h"
+#include "vector2d.h"
 
 class SDLGameObject : public gameObject {
 
@@ -16,8 +17,9 @@ public:
 
 protected:
   
-  int memX;
-  int memY;
+  vector2d memPos;
+  vector2d memVel;
+  vector2d memAcc;
   
   int memW;
   int memH;

@@ -1,10 +1,8 @@
 #include "../include/sdlgameobject.h"
 #include "../include/game.h"
 
-SDLGameObject::SDLGameObject(const loadParams *lP) : gameObject(lP) {
+SDLGameObject::SDLGameObject(const loadParams *lP) : gameObject(lP), memPos(lP->getX(), lP->getY()), memVel(0, 0), memAcc(0,0) {
 
-  memX = lP->getX();
-  memY = lP->getY();
   memW = lP->getW();
   memH = lP->getH();
 
@@ -16,12 +14,13 @@ SDLGameObject::SDLGameObject(const loadParams *lP) : gameObject(lP) {
 
 void SDLGameObject::draw() {
 
-  texMan::Instance()->drawFrame(memId, memX, memY, memW, memH, memCurRow, memCurFrame, theGame::Instance()->getRenderer());
+  texMan::Instance()->drawFrame(memId, (int)memPos.getX(), (int)memPos.getY(), memW, memH, memCurRow, memCurFrame, theGame::Instance()->getRenderer());
 }
 
 void SDLGameObject::update() {
 
-;
+  memVel += memAcc;
+  memPos += memVel;
 }
 
 void SDLGameObject::clean() {
