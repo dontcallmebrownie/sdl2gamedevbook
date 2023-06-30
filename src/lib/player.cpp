@@ -11,8 +11,13 @@ void player::draw () {
 
 void player::update() {
 
-  vector2d *vec = theInputHandler::Instance()->getMousePos();
-  memVel = (*vec - memPos) / 100;
+  memVel.setX(0);
+  memVel.setY(0);
+
+  vector2d *mouse = theInputHandler::Instance()->getMousePos();
+
+ // memPos.setX(mouse->getX() - (memW / 2));
+ // memPos.setY(mouse->getY() - (memH / 2));
 
   handleInput();
 
@@ -44,7 +49,6 @@ void player::handleInput() {
       memVel.setY(1 * theInputHandler::Instance()->yVal(0, 2));
     }
   }
-
 
     /*
         **BUTTON INFO FOR DS4 Controller**
@@ -78,6 +82,43 @@ void player::handleInput() {
 
   if(theInputHandler::Instance()->getMouseButtonState(LEFT)) {
 
+  }
+
+  /*
+    The below can be OR'd to be WASD or Arrow keys or any keys 
+    that would make sense to add multiple bindings for.
+    
+    ex: 
+    if(theInputHandler::Instance()->isKeydown(SDL_SCANCODE_D) || 
+        theInputHandler::Instance()->isKeydown(SDL_SCANCODE_RIGHT)) {
+      // do stuff
+    }
+  */
+
+  // Can I shorten theInputHandler::Instance()? Just a note
+  if(theInputHandler::Instance()->isKeydown(SDL_SCANCODE_D)) {
+
+    memVel.setX(2);
+  }
+
+  if(theInputHandler::Instance()->isKeydown(SDL_SCANCODE_A)) {
+
+    memVel.setX(-2);
+  }
+
+  if(theInputHandler::Instance()->isKeydown(SDL_SCANCODE_W)) {
+
+    memVel.setY(-2);
+  }
+
+  if(theInputHandler::Instance()->isKeydown(SDL_SCANCODE_S)) {
+
+    memVel.setY(2);
+  }
+
+  if(theInputHandler::Instance()->isKeydown(SDL_SCANCODE_E)) {
+    
+    ;
   }
 }
 

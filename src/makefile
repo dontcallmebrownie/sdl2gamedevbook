@@ -11,10 +11,10 @@ EXEC = $(B_DIR)/sopia.lxe
 
 # Build settings
 CC = g++
-CC_FLAGS = -g -Wall --std=c++11
+CC_FLAGS = -g -Wall --std=c++20
 
 # SDL options
-CC_SDL= -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -ludev
+CC_SDL= -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf #-ludev # I am pretty sure this isn't necessary but keep in file just in case
 
 
 all: build

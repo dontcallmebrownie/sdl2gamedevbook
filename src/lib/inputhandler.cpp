@@ -69,140 +69,42 @@ void inputHandler::update() {
 
   while(SDL_PollEvent(&event)) {
 
-    if(event.type == SDL_QUIT) {
+    switch(event.type) {
 
-      theGame::Instance()->quit();
-    }
-      /*  **AXES FOR DS4 Controller**
-          ---------------------------
-              0 & 1 Left Stick
-              2 & 3 Right Stick
-              4 Left Trigger
-              5 Right strigger
-      */ 
-    if(event.type == SDL_JOYAXISMOTION) {
-                                          
-      int whichOne = event.jaxis.which;   
+      case SDL_QUIT:
+        theGame::Instance()->quit();
+        break;
+      
+      case SDL_JOYAXISMOTION:
+        onJoystickAxisMove(event);
+        break;
+      
+      case SDL_JOYBUTTONDOWN:
+        onJoystickButtonDown(event);
+        break;
 
-      if(event.jaxis.axis == 0) { // Left stick Left/Right
+      case SDL_MOUSEMOTION:
+        onMouseMove(event);
+        break;
+      
+      case SDL_MOUSEBUTTONDOWN:
+        onMouseClick(event);
+        break;
 
-        if(event.jaxis.value > memJSDZone) {
-          
-          memJSVals[whichOne].first->setX(1);
-        }
-        else if(event.jaxis.value < -memJSDZone) {
+      case SDL_MOUSEBUTTONUP:
+        onMouseUnClick(event);
+        break;
 
-          memJSVals[whichOne].first->setX(-1);
-        }
-        else {
+      case SDL_KEYDOWN:
+        onKeydown();
+        break;
+      
+      case SDL_KEYUP:
+        onKeyup();
+        break;
 
-          memJSVals[whichOne].first->setX(0);
-        }
-      }
-
-      if(event.jaxis.axis == 1) { // Left stick Up/Down
-
-        if(event.jaxis.value > memJSDZone) {
-          
-          memJSVals[whichOne].first->setY(1);
-        }
-        else if(event.jaxis.value < -memJSDZone) {
-
-          memJSVals[whichOne].first->setY(-1);
-        }
-        else {
-
-          memJSVals[whichOne].first->setY(0);
-        }
-      }
-
-      if(event.jaxis.axis == 2) { // Right stick Left/Right
-
-        if(event.jaxis.value > memJSDZone) {
-          
-          memJSVals[whichOne].second->setX(1);
-        }
-        else if(event.jaxis.value < -memJSDZone) {
-
-          memJSVals[whichOne].second->setX(-1);
-        }
-        else {
-
-          memJSVals[whichOne].second->setX(0);
-        }
-      }
-
-      if(event.jaxis.axis == 3) { // Right stick Up/Down
-
-        if(event.jaxis.value > memJSDZone) {
-          
-          memJSVals[whichOne].second->setY(1);
-        }
-        else if(event.jaxis.value < -memJSDZone) {
-
-          memJSVals[whichOne].second->setY(-1);
-        }
-        else {
-
-          memJSVals[whichOne].second->setY(0);
-        }
-      }
-    }
-
-    if(event.type == SDL_JOYBUTTONDOWN) {
-
-      int whichOne = event.jaxis.which;
-
-      memButtonStates[whichOne][event.jbutton.button] = true;
-    }
-
-    if(event.type == SDL_JOYBUTTONUP) {
-
-      int whichOne = event.jaxis.which;
-
-      memButtonStates[whichOne][event.jbutton.button] = false;
-    }
-
-    if(event.type == SDL_MOUSEBUTTONDOWN) {
-
-      if(event.button.button == SDL_BUTTON_LEFT) {
-
-        memMouseButtonStates[LEFT] = true;
-      }
-
-      if(event.button.button == SDL_BUTTON_MIDDLE) {
-        
-        memMouseButtonStates[MIDDLE] = true;
-      }
-
-      if(event.button.button == SDL_BUTTON_RIGHT) {
-        
-        memMouseButtonStates[RIGHT] = true;        
-      }
-    }
-
-    if(event.type == SDL_MOUSEBUTTONUP) {
-
-      if(event.button.button == SDL_BUTTON_LEFT) {
-
-        memMouseButtonStates[LEFT] = false;
-      }
-
-      if(event.button.button == SDL_BUTTON_MIDDLE) {
-        
-        memMouseButtonStates[MIDDLE] = false;
-      }
-
-      if(event.button.button == SDL_BUTTON_RIGHT) {
-        
-        memMouseButtonStates[RIGHT] = false;        
-      }
-    }
-
-    if(event.type == SDL_MOUSEMOTION) {
-
-      memMousePos->setX(event.motion.x);
-      memMousePos->setY(event.motion.y);
+      default:
+        break;
     }
   }
 }
@@ -237,4 +139,163 @@ int inputHandler::yVal(int joy, int stick) {
     }
   }
 return 0;
+}
+
+bool inputHandler::isKeydown (SDL_Scancode key) {
+
+  if(memKeystate != 0) {
+    
+    if(memKeystate[key]) {
+
+    return true;
+    }
+    else {
+
+    return false;
+    }
+  }
+return false;
+}
+
+void inputHandler::onKeydown() {
+
+  memKeystate = SDL_GetKeyboardState(0);
+}
+
+void inputHandler::onKeyup() {
+  
+  memKeystate = SDL_GetKeyboardState(0);
+}
+
+void inputHandler::onMouseMove(SDL_Event &event) {
+
+  memMousePos->setX(event.motion.x);
+  memMousePos->setY(event.motion.y);
+}
+
+void inputHandler::onMouseClick(SDL_Event &event) {
+
+  if(event.button.button == SDL_BUTTON_LEFT) {
+
+    memMouseButtonStates[LEFT] = true;
+  }
+
+  if(event.button.button == SDL_BUTTON_MIDDLE) {
+        
+    memMouseButtonStates[MIDDLE] = true;
+  }
+
+  if(event.button.button == SDL_BUTTON_RIGHT) {
+       
+    memMouseButtonStates[RIGHT] = true;        
+  }
+}
+
+void inputHandler::onMouseUnClick(SDL_Event &event) {
+
+  if(event.button.button == SDL_BUTTON_LEFT) {
+
+    memMouseButtonStates[LEFT] = false;
+  }
+
+  if(event.button.button == SDL_BUTTON_MIDDLE) {
+       
+    memMouseButtonStates[MIDDLE] = false;
+  }
+
+  if(event.button.button == SDL_BUTTON_RIGHT) {
+        
+    memMouseButtonStates[RIGHT] = false;        
+  }
+}
+
+void inputHandler::onJoystickAxisMove(SDL_Event &event) {
+
+      /*  **AXES FOR DS4 Controller**
+          ---------------------------
+              0 & 1 Left Stick
+              2 & 3 Right Stick
+              4 Left Trigger
+              5 Right strigger
+      */ 
+                                          
+  int whichOne = event.jaxis.which;   
+
+  if(event.jaxis.axis == 0) { // Left stick Left/Right
+
+    if(event.jaxis.value > memJSDZone) {
+          
+      memJSVals[whichOne].first->setX(1);
+    }
+    else if(event.jaxis.value < -memJSDZone) {
+
+      memJSVals[whichOne].first->setX(-1);
+    }
+    else {
+
+      memJSVals[whichOne].first->setX(0);
+    }
+  }
+
+  if(event.jaxis.axis == 1) { // Left stick Up/Down
+
+    if(event.jaxis.value > memJSDZone) {
+          
+      memJSVals[whichOne].first->setY(1);
+    }
+    else if(event.jaxis.value < -memJSDZone) {
+
+      memJSVals[whichOne].first->setY(-1);
+    }
+    else {
+
+      memJSVals[whichOne].first->setY(0);
+    }
+  }
+
+  if(event.jaxis.axis == 2) { // Right stick Left/Right
+
+    if(event.jaxis.value > memJSDZone) {
+          
+      memJSVals[whichOne].second->setX(1);
+    }
+    else if(event.jaxis.value < -memJSDZone) {
+
+      memJSVals[whichOne].second->setX(-1);
+    }
+    else {
+
+      memJSVals[whichOne].second->setX(0);
+    }
+  }
+
+  if(event.jaxis.axis == 3) { // Right stick Up/Down
+
+    if(event.jaxis.value > memJSDZone) {
+          
+        memJSVals[whichOne].second->setY(1);
+    }
+    else if(event.jaxis.value < -memJSDZone) {
+
+      memJSVals[whichOne].second->setY(-1);
+    }
+    else {
+
+      memJSVals[whichOne].second->setY(0);
+    }
+  }
+}
+
+void inputHandler::onJoystickButtonDown(SDL_Event &event) {
+
+  int whichOne = event.jaxis.which; 
+
+  memButtonStates[whichOne][event.jbutton.button] = true; 
+}
+
+void inputHandler::onJoystickButtonUp(SDL_Event &event) {
+
+  int whichOne = event.jaxis.which; 
+
+  memButtonStates[whichOne][event.jbutton.button] = false;  
 }

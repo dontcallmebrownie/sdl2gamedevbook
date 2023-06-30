@@ -36,9 +36,30 @@ public:
   int xVal(int joy, int stick);
   int yVal(int joy, int stick);
   bool getButtonState(int joy, int buttonNumber) {return memButtonStates[joy][buttonNumber];}
+  bool isKeydown(SDL_Scancode key);
+  
   
   bool getMouseButtonState(int buttonNumber) {return memMouseButtonStates[buttonNumber];}
   vector2d *getMousePos() {return memMousePos;}
+
+
+  // Consolodate input stuff
+  void onKeydown();
+  void onKeyup();
+
+  void onMouseMove(SDL_Event &event);
+  void onMouseClick(SDL_Event &event);
+  void onMouseUnClick(SDL_Event &event); // These are shorter then MouseButtonDown/Up 
+
+  void onJoystickAxisMove(SDL_Event &event);
+  void onJoystickButtonDown(SDL_Event &event);
+  void onJoystickButtonUp(SDL_Event &event);
+
+
+
+
+
+
 
 private:
 
@@ -46,6 +67,7 @@ private:
   static inputHandler *inst;
   bool memJSInitialized;
   const int memJSDZone = 10000;
+  const Uint8 *memKeystate;
 
   std::vector<SDL_Joystick*> memJoysticks;
   std::vector<std::pair<vector2d*, vector2d*>> memJSVals;

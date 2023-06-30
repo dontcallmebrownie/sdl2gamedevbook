@@ -25,9 +25,9 @@
 const int FPS = 60;
 const int DELAY_TIME = 16.6f;
 
-int main(int argc, char *args[]) {
+Uint32 frameS, frameT;
 
-  Uint32 frameS, frameT;
+int main(int argc, char *args[]) {
 
   std::cout << "Attempting to init Game...\n";
 
@@ -43,7 +43,7 @@ int main(int argc, char *args[]) {
       theGame::Instance()->update();
       theGame::Instance()->render();
 
-      frameT = SDL_GetTicks() - frameS;
+      frameT = SDL_GetTicks() - frameS; // Calculating our delta? Idk, maybe.
 
       if (frameT < DELAY_TIME) {
 

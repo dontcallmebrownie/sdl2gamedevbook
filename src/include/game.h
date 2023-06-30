@@ -11,6 +11,10 @@
 #include "./player.h"
 #include "./enemy.h"
 #include "inputhandler.h"
+#include "gamestatemachine.h"
+#include "menustate.h"
+#include "playstate.h"
+
 
 class game {
 
@@ -38,9 +42,7 @@ public:
   void quit() { running = false;}
   SDL_Renderer *getRenderer() const {return screen;}
 
-  gameObject *go;
-  gameObject *p;
-  gameObject *e;
+  gameStateMachine *memGSM;
 
   std::vector<gameObject*> memGameObjects; 
 
