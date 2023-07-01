@@ -7,7 +7,7 @@ S_FILES = $(S_DIR)/main.cpp
 D_FILES = $(S_DIR)/lib/*
 
 # Output
-EXEC = $(B_DIR)/sopia.lxe
+EXEC = $(B_DIR)/gdevbook
 
 # Build settings
 CC = g++

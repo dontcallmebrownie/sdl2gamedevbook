@@ -31,7 +31,7 @@ int main(int argc, char *args[]) {
 
   std::cout << "Attempting to init Game...\n";
 
-  if(theGame::Instance()->init("Sophia", 640, 480, false)) {
+  if(theGame::Instance()->init("GDevBook", 640, 480, false)) {
 
     std::cout << "\tGame init success!\n\n";
 
