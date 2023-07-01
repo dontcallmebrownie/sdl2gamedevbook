@@ -1,30 +1,32 @@
-#ifndef PLAYSTATE_H
-#define PLAYSTATE_H
+#ifndef PAUSESTATE_H
+#define PAUSESTATE_H
 
 #include<iostream>
 #include<string>
 
 #include "gamestate.h"
-#include "player.h"
+
 
 class gameObject;
 
-class playState : public gameState {
+class pauseState : public gameState {
 
 public:
 
-  //virtual ~playState() = default;
-
   virtual void update();
   virtual void render();
+
   virtual bool onEnter();
   virtual bool onExit();
 
-  std::string getStateId() const {return playId;}
+  std::string getStateId() const {return pauseId;}
 
 private:
 
-  static const std::string playId;
+  static void pauseToMain();
+  static void resumePlay();
+
+  static const std::string pauseId;
 
   std::vector<gameObject*> memGameObjects;
 };

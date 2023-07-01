@@ -12,12 +12,14 @@ class menuState : public gameState {
 
 public:
 
+  virtual ~menuState() = default;
+
   virtual void update();
   virtual void render();
   virtual bool onEnter();
   virtual bool onExit();
 
-  virtual std::string getStateId() const {return menuId;}
+  std::string getStateId() const {return menuId;}
 
 private:
 

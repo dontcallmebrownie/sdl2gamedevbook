@@ -95,10 +95,6 @@ void game::eventsHandler() {
   
   theInputHandler::Instance()->update();
 
-  if(theInputHandler::Instance()->isKeydown(SDL_SCANCODE_RETURN)) {
-
-    memGSM->changeState(new playState());
-  }
 }
 
 void game::clean() {

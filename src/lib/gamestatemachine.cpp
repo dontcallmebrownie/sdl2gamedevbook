@@ -1,3 +1,5 @@
+#include<iostream>
+
 #include "../include/gamestatemachine.h"
 
 void gameStateMachine::pushState(gameState *state) {
@@ -8,16 +10,18 @@ void gameStateMachine::pushState(gameState *state) {
 
 void gameStateMachine::changeState(gameState *state) {
 
+  std::cout << state->getStateId() << std::endl;
+
   if(!memGameStates.empty()) {
 
-    if(memGameStates.back()->getStateId() == state->getStateId()) {
+    if(memGameStates.front()->getStateId() == state->getStateId()) {
 
     return;
     }
 
-    if(memGameStates.back()->onExit()) {
+    if(memGameStates.front()->onExit()) {
 
-      delete memGameStates.back();
+      delete memGameStates.front();
       memGameStates.pop_back();
     }
   }
@@ -41,6 +45,7 @@ void gameStateMachine::popState() {
 void gameStateMachine::render() {
 
   if(!memGameStates.empty()) {
+
     memGameStates.back()->render();
   }
 }

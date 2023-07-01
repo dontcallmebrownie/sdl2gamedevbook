@@ -21,12 +21,12 @@ void playState::render() {
 bool playState::onEnter() {
 
   std::cout << "Entering Play State!\n";
-  
 
   if(!theTexMan::Instance()->load("../assets/helicopter.png", "helicopter", theGame::Instance()->getRenderer())) {
-
-    return false;
+    
+  return false;
   }
+
 
   // memGameObjects.clear();
 

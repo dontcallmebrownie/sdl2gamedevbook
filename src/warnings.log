@@ -1,0 +1,32 @@
+./lib/gamestatemachine.cpp: In member function ‘void gameStateMachine::changeState(gameState*)’:
+./lib/gamestatemachine.cpp:24:7: warning: deleting object of abstract class type ‘gameState’ which has non-virtual destructor will cause undefined behavior [-Wdelete-non-virtual-dtor]
+   24 |       delete memGameStates.back();
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+./lib/gamestatemachine.cpp: In member function ‘void gameStateMachine::popState()’:
+./lib/gamestatemachine.cpp:39:7: warning: deleting object of abstract class type ‘gameState’ which has non-virtual destructor will cause undefined behavior [-Wdelete-non-virtual-dtor]
+   39 |       delete memGameStates.back();
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+./lib/menustate.cpp: In member function ‘virtual void menuState::update()’:
+./lib/menustate.cpp:8:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<gameObject*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+    8 |   for(int i = 0; i < memGameObjects.size(); i++) {
+      |                  ~~^~~~~~~~~~~~~~~~~~~~~~~
+./lib/menustate.cpp: In member function ‘virtual void menuState::render()’:
+./lib/menustate.cpp:16:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<gameObject*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   16 |    for(int i = 0; i < memGameObjects.size(); i++) {
+      |                   ~~^~~~~~~~~~~~~~~~~~~~~~~
+./lib/menustate.cpp: In member function ‘virtual bool menuState::onExit()’:
+./lib/menustate.cpp:47:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<gameObject*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   47 |   for(int i = 0; i < memGameObjects.size(); i++) {
+      |                  ~~^~~~~~~~~~~~~~~~~~~~~~~
+./lib/playstate.cpp: In member function ‘virtual void playState::update()’:
+./lib/playstate.cpp:7:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<gameObject*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+    7 |   for(int i = 0; i < memGameObjects.size(); i++) {
+      |                  ~~^~~~~~~~~~~~~~~~~~~~~~~
+./lib/playstate.cpp: In member function ‘virtual void playState::render()’:
+./lib/playstate.cpp:15:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<gameObject*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   15 |    for(int i = 0; i < memGameObjects.size(); i++) {
+      |                   ~~^~~~~~~~~~~~~~~~~~~~~~~
+./lib/playstate.cpp: In member function ‘virtual bool playState::onExit()’:
+./lib/playstate.cpp:42:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<gameObject*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   42 |   for(int i = 0; i < memGameObjects.size(); i++) {
+      |                  ~~^~~~~~~~~~~~~~~~~~~~~~~
