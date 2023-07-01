@@ -32,6 +32,8 @@ public:
   void draw(std::string id, int x, int y, int w, int h, SDL_Renderer *screen, SDL_RendererFlip flip = SDL_FLIP_NONE);
   void drawFrame(std::string id, int x, int y, int w, int h, int curRow, int curFrame, SDL_Renderer *screen, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
+  void clearTex(std::string id);
+
 private:
 
   std::map<std::string, SDL_Texture*> texMap;

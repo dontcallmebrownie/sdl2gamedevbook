@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "SDL2/SDL.h"
-#include "./game.h"
+#include "game.h"
 
   enum mouseButtons {
 
@@ -54,12 +54,6 @@ public:
   void onJoystickAxisMove(SDL_Event &event);
   void onJoystickButtonDown(SDL_Event &event);
   void onJoystickButtonUp(SDL_Event &event);
-
-
-
-
-
-
 
 private:
 

@@ -5,6 +5,8 @@
 #include<string>
 
 #include "gamestate.h"
+#include "gameobject.h"
+
 
 class menuState : public gameState {
 
@@ -19,14 +21,13 @@ public:
 
 private:
 
+  static void menuToPlay();
+  static void exitFromMenu();
+
+  std::vector<gameObject*> memGameObjects;
+
   static const std::string menuId;
 };
-
-
-
-
-
-
 
 
 #endif

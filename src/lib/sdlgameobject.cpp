@@ -14,13 +14,20 @@ SDLGameObject::SDLGameObject(const loadParams *lP) : gameObject(lP), memPos(lP->
 
 void SDLGameObject::draw() {
 
-  texMan::Instance()->drawFrame(memId, (int)memPos.getX(), (int)memPos.getY(), memW, memH, memCurRow, memCurFrame, theGame::Instance()->getRenderer());
+  if(memVel.getX() > 0)
+  {
+    //texMan::Instance()->drawFrame(memId, (int)memPos.getX(), (int)memPos.getY(), memW, memH, memCurRow, memCurFrame, theGame::Instance()->getRenderer(), SDL_FLIP_HORIZONTAL);
+  }
+  else {
+
+    texMan::Instance()->drawFrame(memId, (int)memPos.getX(), (int)memPos.getY(), memW, memH, memCurRow, memCurFrame, theGame::Instance()->getRenderer());
+  }
+
 }
 
 void SDLGameObject::update() {
 
-  memVel += memAcc;
-  memPos += memVel;
+
 }
 
 void SDLGameObject::clean() {

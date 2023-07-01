@@ -42,7 +42,8 @@ public:
   void quit() { running = false;}
   SDL_Renderer *getRenderer() const {return screen;}
 
-  gameStateMachine *memGSM;
+  gameStateMachine* getStateMachine(){return memGSM;}
+ 
 
   std::vector<gameObject*> memGameObjects; 
 
@@ -54,6 +55,7 @@ private:
 
   SDL_Window *win;
   SDL_Renderer *screen;
+  gameStateMachine *memGSM;
 
   bool running;
 };

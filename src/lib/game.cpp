@@ -70,13 +70,8 @@ bool game::init(const char* title, int height, int width, bool fs) {
   return false;
   }
 
- // memGameObjects.push_back(new player(new loadParams(100, 100, 128, 82, "animate")));
- // memGameObjects.push_back(new enemy(new loadParams(300, 300, 128, 82, "animate")));
-
   memGSM = new gameStateMachine();
   memGSM->changeState(new menuState());
-
-
 
  
 return true;
@@ -86,17 +81,14 @@ void game::render() {
   
   SDL_RenderClear(screen);
 
-  for(std::vector<gameObject>::size_type i = 0; i != memGameObjects.size(); i++) {
-
-    memGameObjects[i]->draw();
-  }
+  memGSM->render();
 
   SDL_RenderPresent(screen);
 }
 
 void game::update() {
 
-
+  memGSM->update();
 }
 
 void game::eventsHandler() {
@@ -107,7 +99,6 @@ void game::eventsHandler() {
 
     memGSM->changeState(new playState());
   }
-
 }
 
 void game::clean() {

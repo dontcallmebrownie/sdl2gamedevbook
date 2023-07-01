@@ -11,6 +11,8 @@ public:
   void pushState(gameState *state);
   void changeState(gameState *state);
   void popState();
+  void update();
+  void render();
 
 private:
 

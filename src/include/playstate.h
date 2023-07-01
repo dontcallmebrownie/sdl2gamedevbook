@@ -1,10 +1,13 @@
-#ifndef PLAYTATE_H
+#ifndef PLAYSTATE_H
 #define PLAYSTATE_H
 
 #include<iostream>
 #include<string>
 
 #include "gamestate.h"
+#include "player.h"
+
+class gameObject;
 
 class playState : public gameState {
 
@@ -20,6 +23,8 @@ public:
 private:
 
   static const std::string playId;
+
+  std::vector<gameObject*> memGameObjects;
 };
 
 #endif

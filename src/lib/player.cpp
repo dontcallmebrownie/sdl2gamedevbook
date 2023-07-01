@@ -14,11 +14,6 @@ void player::update() {
   memVel.setX(0);
   memVel.setY(0);
 
-  vector2d *mouse = theInputHandler::Instance()->getMousePos();
-
- // memPos.setX(mouse->getX() - (memW / 2));
- // memPos.setY(mouse->getY() - (memH / 2));
-
   handleInput();
 
   memCurFrame = int(((SDL_GetTicks() / 100) % 6));
@@ -26,6 +21,11 @@ void player::update() {
 }
 
 void player::handleInput() {
+
+  vector2d *target = theInputHandler::Instance()->getMousePos();
+  memVel = *target - memPos;
+
+  memVel /= 50;
 
   if(theInputHandler::Instance()->joySticksInitialized()) {
 

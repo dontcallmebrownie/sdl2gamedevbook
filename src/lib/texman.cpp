@@ -9,7 +9,7 @@ bool texMan::load(std::string fileName, std::string id, SDL_Renderer *screen) {
 
   if(tempS == 0) {
     
-    std::cout << "\t**load failed!**\n";
+    std::cout << "\t**load failed!** \n"; 
   return false;
   }
 
@@ -55,4 +55,9 @@ void texMan::drawFrame(std::string id, int x, int y, int w, int h, int curRow, i
   destRect.y = y;
 
   SDL_RenderCopyEx(screen, texMap[id], &srcRect, &destRect, 0, 0, flip);
+}
+
+void texMan::clearTex(std::string id) {
+  
+  texMap.erase(id);
 }
