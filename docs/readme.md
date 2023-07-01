@@ -25,3 +25,7 @@
 There is a massive bug somethere that I *** cannot *** figure out so I'm pausing this and using a new resource.
 
 I will revisit this after a bit of a brush up on general concepts and general skill improvment.
+
+---
+If you want a crack at the bug please see this post: 
+https://stackoverflow.com/questions/76592962/sdl2-segfault-dealing-with-vectors-of-gameobjects
