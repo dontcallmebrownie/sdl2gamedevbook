@@ -6,10 +6,10 @@
 #include <string>
 #include <vector>
 
-#include "./texman.h"
-#include "./gameobject.h"
-#include "./player.h"
-#include "./enemy.h"
+#include "texman.h"
+#include "gameobject.h"
+#include "player.h"
+#include "enemy.h"
 #include "inputhandler.h"
 #include "gamestatemachine.h"
 #include "menustate.h"

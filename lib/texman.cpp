@@ -1,4 +1,4 @@
-#include "../include/texman.h"
+#include "texman.h"
 
 texMan *texMan::inst = 0;
 

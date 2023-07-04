@@ -65,11 +65,6 @@ bool game::init(const char* title, int height, int width, bool fs) {
 
 
 
-  if(!theTexMan::Instance()->load("../assets/animate-alpha.png", "animate", screen)) {
-
-  return false;
-  }
-
   memGSM = new gameStateMachine();
   memGSM->changeState(new menuState());
 

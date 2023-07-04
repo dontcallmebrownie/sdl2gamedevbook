@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include "SDL2/SDL.h"
+#include "SDL.h"
 #include "game.h"
 
   enum mouseButtons {

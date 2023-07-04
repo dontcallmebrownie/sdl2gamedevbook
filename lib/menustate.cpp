@@ -23,12 +23,12 @@ bool menuState::onEnter() {
 
   std::cout << "Entering Menu State!\n";
 
-  if(!theTexMan::Instance()->load("../assets/button.png", "playbutton", theGame::Instance()->getRenderer())) {
+  if(!theTexMan::Instance()->load("./assets/button.png", "playbutton", theGame::Instance()->getRenderer())) {
 
   return false;
   }
 
-  if(!theTexMan::Instance()->load("../assets/exit.png", "exitbutton", theGame::Instance()->getRenderer())) {
+  if(!theTexMan::Instance()->load("./assets/exit.png", "exitbutton", theGame::Instance()->getRenderer())) {
 
   return false;
   }

@@ -1,0 +1,4 @@
+﻿  menustate.cpp
+C:\Users\David\dev\c-cpp\sdl2\sdl2gamedevbook\include\vector2d.h(22,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\David\dev\c-cpp\sdl2\sdl2gamedevbook\include\vector2d.h(23,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  sdl2gamedevbook.vcxproj -> C:\Users\David\dev\c-cpp\sdl2\sdl2gamedevbook\x64\Debug\sdl2gamedevbook.exe

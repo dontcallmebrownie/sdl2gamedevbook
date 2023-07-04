@@ -24,12 +24,12 @@ void pauseState::render() {
 
 bool pauseState::onEnter() {
 
-
+	return false;
 }
 
 bool pauseState::onExit() {
 
-  
+	return false;
 }
 
 

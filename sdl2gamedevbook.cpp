@@ -22,6 +22,9 @@
 
 #include "./include/game.h"
 
+#define SDL_MAIN_HANDLED
+#include "SDL.h"
+
 const int FPS = 60;
 const int DELAY_TIME = 16.6f;
 
