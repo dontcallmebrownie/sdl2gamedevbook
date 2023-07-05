@@ -16,7 +16,7 @@ void SDLGameObject::draw() {
 
   if(memVel.getX() > 0)
   {
-    //texMan::Instance()->drawFrame(memId, (int)memPos.getX(), (int)memPos.getY(), memW, memH, memCurRow, memCurFrame, theGame::Instance()->getRenderer(), SDL_FLIP_HORIZONTAL);
+    texMan::Instance()->drawFrame(memId, (int)memPos.getX(), (int)memPos.getY(), memW, memH, memCurRow, memCurFrame, theGame::Instance()->getRenderer(), SDL_FLIP_HORIZONTAL);
   }
   else {
 
@@ -27,7 +27,8 @@ void SDLGameObject::draw() {
 
 void SDLGameObject::update() {
 
-
+    memVel += memAcc;
+    memPos += memVel;
 }
 
 void SDLGameObject::clean() {

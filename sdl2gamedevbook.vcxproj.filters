@@ -27,9 +27,6 @@
     <ClCompile Include="lib\gameobject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lib\gamestate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lib\gamestatemachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

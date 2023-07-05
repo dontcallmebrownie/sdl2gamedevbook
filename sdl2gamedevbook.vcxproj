@@ -142,7 +142,6 @@
     <ClCompile Include="lib\enemy.cpp" />
     <ClCompile Include="lib\game.cpp" />
     <ClCompile Include="lib\gameobject.cpp" />
-    <ClCompile Include="lib\gamestate.cpp" />
     <ClCompile Include="lib\gamestatemachine.cpp" />
     <ClCompile Include="lib\inputhandler.cpp" />
     <ClCompile Include="lib\loadparams.cpp" />

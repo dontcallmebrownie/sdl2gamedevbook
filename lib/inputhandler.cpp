@@ -55,7 +55,8 @@ void inputHandler::initializeJoySticks () {
 }
 
 void inputHandler::clean() {
-  if(memJSInitialized) {
+ 
+    if(memJSInitialized) {
     for(int i = 0; i < SDL_NumJoysticks(); i++) {
 
     SDL_JoystickClose(memJoysticks[i]);

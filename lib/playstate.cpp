@@ -22,17 +22,15 @@ bool playState::onEnter() {
 
   std::cout << "Entering Play State!\n";
 
-  if(!theTexMan::Instance()->load("../assets/helicopter.png", "helicopter", theGame::Instance()->getRenderer())) {
+  if(!theTexMan::Instance()->load("./assets/helicopter.png", "helicopter", theGame::Instance()->getRenderer())) {
     
   return false;
   }
 
 
-  // memGameObjects.clear();
-
   gameObject *p = new player(new loadParams(100, 100, 128, 55, "helicopter"));
 
-  memGameObjects.push_back(p);
+  playState::memGameObjects.push_back(p);
   
 return true;
 }
