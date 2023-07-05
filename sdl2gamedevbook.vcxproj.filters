@@ -42,7 +42,7 @@
     <ClCompile Include="lib\menustate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lib\pauseState.cpp">
+    <ClCompile Include="lib\pausestate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lib\player.cpp">

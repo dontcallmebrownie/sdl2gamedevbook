@@ -147,7 +147,7 @@
     <ClCompile Include="lib\loadparams.cpp" />
     <ClCompile Include="lib\menubutton.cpp" />
     <ClCompile Include="lib\menustate.cpp" />
-    <ClCompile Include="lib\pauseState.cpp" />
+    <ClCompile Include="lib\pausestate.cpp" />
     <ClCompile Include="lib\player.cpp" />
     <ClCompile Include="lib\playstate.cpp" />
     <ClCompile Include="lib\sdlgameobject.cpp" />
