@@ -10,7 +10,7 @@ D_FILES = $(S_DIR)/lib/*
 EXEC = $(B_DIR)/gdevbook
 
 # Build settings
-CC = g++
+CC = g++ #clang 
 CC_FLAGS = -g -Wall -D_GLIBCXX_DEBUG -fsanitize=address -fsanitize=undefined
 
 # SDL options
